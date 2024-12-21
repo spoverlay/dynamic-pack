@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import Header from "@/components/Header"
 
 const FormSchema = z.object({
   pack_version: z.string().min(2, {
@@ -28,7 +29,7 @@ const FormSchema = z.object({
   })
 })
 
-export default function InputForm() {
+export default function Main() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -67,10 +68,7 @@ export default function InputForm() {
 
   return (
     <>
-      <header className="flex items-center justify-center py-4 gap-2">
-        <img className="size-8 rounded-md" src="/logo.png" alt="alt" />
-        <p className="font-semibold">Dynamic Pack <span className="font-normal"> | Json Generator</span></p>
-      </header>
+      <Header/>
       <div className="min-h-[93dvh] flex justify-center items-center">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 md:w-1/3 space-y-6">
@@ -122,7 +120,7 @@ export default function InputForm() {
               )}
             />
 
-            <Button className="w-full" type="submit">Submit</Button>
+            <Button className="w-full bg-white text-black" type="submit">Submit</Button>
           </form>
         </Form>
       </div>
